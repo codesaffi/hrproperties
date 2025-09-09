@@ -1,7 +1,7 @@
 import img from "../assets/ceo.webp";
 
 
-export default function LeadershipMessage() {
+export default function LeaderShipMessage() {
   return (
     <section className="bg-white py-12">
   <div className="w-full px-2 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
