@@ -11,7 +11,7 @@ import OpportunitiesSection from "./components/OpportunitiesSection";
 import Footer from "./components/Footer";
 import vid1 from "./assets/vid_1.mp4";
 import vid2 from "./assets/vid_2.mp4";
-import LeadershipMessage from "./components/LeadershipMessage1";
+import CeoMessage from "./components/CeoMessage";
 
 
 export default function App() {
@@ -52,7 +52,7 @@ function ScrollToTopButton() {
       <AdVideo src={vid1} />
       <OpportunitiesSection />
       <AdVideo src={vid2}  />
-      <LeadershipMessage />
+      <CeoMessage />
       <Footer />
   <ScrollToTopButton />
     </div>
