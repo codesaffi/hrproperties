@@ -6,7 +6,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
-import logo from "../assets/HR_logo-2.avif";
+import logo from "../assets/HR_Logo-2.avif";
 
 export default function Footer() {
   return (
