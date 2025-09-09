@@ -1,7 +1,7 @@
 import { Search, User, Star, ShoppingCart } from "lucide-react";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import logo from "../assets/HR_logos.webp";
+import logo from "../assets/HR_Logos.webp";
 import { useEffect } from "react";
 
 export default function Navbar() {
