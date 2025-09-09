@@ -8,10 +8,10 @@ import VideoGallery from "./components/VideoGallery";
 import InvestmentSection from "./components/InvestmentSection";
 import AdVideo from "./components/AdVideo";
 import OpportunitiesSection from "./components/OpportunitiesSection";
-import LeaderShipMessage from "./components/LeaderShipMessage";
 import Footer from "./components/Footer";
 import vid1 from "./assets/vid_1.mp4";
 import vid2 from "./assets/vid_2.mp4";
+import LeadershipMessage from "./components/LeadershipMessage1";
 
 
 export default function App() {
@@ -52,7 +52,7 @@ function ScrollToTopButton() {
       <AdVideo src={vid1} />
       <OpportunitiesSection />
       <AdVideo src={vid2}  />
-      <LeaderShipMessage />
+      <LeadershipMessage />
       <Footer />
   <ScrollToTopButton />
     </div>
