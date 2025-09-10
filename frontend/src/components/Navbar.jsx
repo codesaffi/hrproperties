@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logo from "../assets/HR_Logos.webp";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,12 +24,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
   const navLinks = [
-    "Etihad Town Phase 1",
-    "Etihad Town Phase 2",
-    "Etihad Town Phase 3",
-    "About Us",
-    "CEO Message",
-    "Contact Us"
+    { text: "Home", to: "/" },
+    { text: "About", to: "/about" },
+    { text: "Etihad Town Phase 1", to: "#" },
+    { text: "Etihad Town Phase 2", to: "#" },
+    { text: "Etihad Town Phase 3", to: "#" },
+    { text: "CEO Message", to: "#" },
+    { text: "Contact Us", to: "#" }
   ];
 
   return (
@@ -63,18 +65,32 @@ export default function Navbar() {
 
       {/* Links - Desktop */}
       <div className="hidden md:flex justify-center space-x-8 py-2 border-t text-sm font-medium text-gray-700">
-        {navLinks.map((text, idx) => (
-          <a
-            key={idx}
-            href="#"
-            className="relative px-1 transition-colors duration-200 hover:text-blue-700 group"
-          >
-            {text}
-            <span
-              className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"
-              style={{ borderRadius: '2px' }}
-            ></span>
-          </a>
+        {navLinks.map((link, idx) => (
+          link.to === "/" || link.to === "/about" ? (
+            <Link
+              key={idx}
+              to={link.to}
+              className="relative px-1 transition-colors duration-200 hover:text-blue-700 group"
+            >
+              {link.text}
+              <span
+                className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"
+                style={{ borderRadius: '2px' }}
+              ></span>
+            </Link>
+          ) : (
+            <a
+              key={idx}
+              href={link.to}
+              className="relative px-1 transition-colors duration-200 hover:text-blue-700 group"
+            >
+              {link.text}
+              <span
+                className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"
+                style={{ borderRadius: '2px' }}
+              ></span>
+            </a>
+          )
         ))}
       </div>
 
@@ -90,19 +106,34 @@ export default function Navbar() {
               <X className="w-7 h-7" />
             </button>
             <div className="flex flex-col items-start mt-8">
-              {navLinks.map((text, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="relative py-3 w-full text-left transition-colors duration-200 hover:text-blue-700 group"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {text}
-                  <span
-                    className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-3/4"
-                    style={{ borderRadius: '2px' }}
-                  ></span>
-                </a>
+              {navLinks.map((link, idx) => (
+                link.to === "/" || link.to === "/about" ? (
+                  <Link
+                    key={idx}
+                    to={link.to}
+                    className="relative py-3 w-full text-left transition-colors duration-200 hover:text-blue-700 group"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.text}
+                    <span
+                      className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-3/4"
+                      style={{ borderRadius: '2px' }}
+                    ></span>
+                  </Link>
+                ) : (
+                  <a
+                    key={idx}
+                    href={link.to}
+                    className="relative py-3 w-full text-left transition-colors duration-200 hover:text-blue-700 group"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.text}
+                    <span
+                      className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-3/4"
+                      style={{ borderRadius: '2px' }}
+                    ></span>
+                  </a>
+                )
               ))}
             </div>
           </div>
