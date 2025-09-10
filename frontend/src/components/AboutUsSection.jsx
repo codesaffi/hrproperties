@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import LDA from "../assets/LDA.webp";
 import secure from "../assets/secure.webp";
 import trust from "../assets/trust.webp";
+import { Link } from "react-router-dom";
 
 export default function AboutUsSection() {
 
@@ -28,17 +29,19 @@ export default function AboutUsSection() {
   return (
     <section className="bg-white min-h-screen flex items-center justify-center">
       <div className="max-w-5xl w-full px-6 flex flex-col items-center justify-center">
+        
+                {/* Section Heading */}
+  <h2 className="text-4xl md:text-5xl font-bold text-blue-800 text-center mb-2 mt-8">
+          About Us
+        </h2>
         {/* Breadcrumb */}
-  <div className="flex items-center justify-center md:justify-start text-lg md:text-xl text-gray-600 mb-6 mt-8">
-          <span className="hover:underline cursor-pointer">Home</span>
+  <div className="flex items-center justify-center md:justify-start text-lg md:text-xl text-gray-600 mb-6 ">
+        <Link to={"/"} ><span className="hover:underline cursor-pointer">Home</span></Link>  
           <ChevronRight className="w-4 h-4 mx-2 text-gray-500" />
           <span className="text-blue-800 font-medium">About Us</span>
         </div>
 
-        {/* Section Heading */}
-  <h2 className="text-4xl md:text-5xl font-bold text-blue-800 text-center mb-10">
-          About Us
-        </h2>
+
 
   <div className=" flex flex-col items-center text-center">
           {/* Who We Are */}

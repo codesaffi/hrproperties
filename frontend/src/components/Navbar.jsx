@@ -29,7 +29,7 @@ export default function Navbar() {
     { text: "Etihad Town Phase 1", to: "#" },
     { text: "Etihad Town Phase 2", to: "#" },
     { text: "Etihad Town Phase 3", to: "#" },
-    { text: "CEO Message", to: "#" },
+    { text: "CEO Message", to: "/ceo-message" },
     { text: "Contact Us", to: "#" }
   ];
 

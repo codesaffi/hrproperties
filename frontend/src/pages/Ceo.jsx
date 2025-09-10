@@ -1,11 +1,10 @@
+import CeoSection from "../components/CeoSection";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import AboutUsSection from "../components/AboutUsSection";
 
 
-
-export default function About() {
-function ScrollToTopButton() {
+export default function Ceo() {
+    function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ function ScrollToTopButton() {
 }
   return (
     <div className="font-sans">
-<AboutUsSection />
+<CeoSection />
 <ScrollToTopButton />
-    </div>
+</div>
   );
 }
