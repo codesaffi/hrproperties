@@ -145,7 +145,7 @@ export default function AboutUsSection() {
   <div className="w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20">
           {items.map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 w-full md:w-1/3">
-              <img src={item.icon} className="h-16 w-16 object-contain mb-4" />
+              <img src={item.icon} className="h-16 w-16 object-contain mb-4" loading="lazy" />
               <h3 className="font-semibold text-2xl mb-2">{item.title}</h3>
               <p className="text-gray-600 text-xl">{item.desc}</p>
             </div>
