@@ -17,6 +17,9 @@ import AdminHome from "./pages/AdminHome";
 import AdminRoute from "./components/AdminRoute";
 import AdminAddProduct from "./pages/AdminAddProduct";
 import AdminProducts from "./pages/AdminProducts";
+import Phase1 from "./pages/Phase1";
+import Phase2 from "./pages/Phase2";
+import Phase3 from "./pages/Phase3";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 // export const adminUrl = import.meta.env.VITE_ADMIN_URL
@@ -36,6 +39,9 @@ export default function App() {
 															<Route path="/contact" element={<Contact />} />
 							  <Route path="/login" element={<Login />} />
 							  <Route path="/signup" element={<Signup />} />
+                <Route path="/phase-1" element={<Phase1 />} />
+                <Route path="/phase-2" element={<Phase2 />} />
+                <Route path="/phase-3" element={<Phase3 />} />
 							  <Route path="/admin-login" element={<AdminLogin />} />
 							  <Route path="/admin" element={<AdminRoute><AdminHome /></AdminRoute>} />
 							  <Route path="/admin/add-product" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
