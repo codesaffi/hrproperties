@@ -9,6 +9,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+  const [userDropdown, setUserDropdown] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,11 +59,38 @@ export default function Navbar() {
         </div>
 
         {/* Right - Icons */}
-        <div className="flex items-center space-x-4">
-          <User className="w-5 h-5 cursor-pointer" />
+        <div className="flex items-center space-x-4 relative">
+          {user ? (
+            <button
+              className="flex items-center space-x-2 focus:outline-none"
+              onClick={() => setUserDropdown((v) => !v)}
+              aria-label="User menu"
+            >
+              <User className="w-5 h-5 cursor-pointer" />
+              <span className="font-medium text-blue-800">Hey, {user.name}</span>
+            </button>
+          ) : (
+            <button className="flex items-center space-x-2 focus:outline-none" aria-label="Login/Signup" disabled>
+              <User className="w-5 h-5 cursor-pointer" />
+            </button>
+          )}
+          {userDropdown && user && (
+            <div className="absolute right-0 top-8 bg-white shadow-lg rounded-lg py-2 px-4 z-50 min-w-[120px]">
+              <div className="mb-2 text-blue-800">Hey, {user.name}</div>
+              <button
+                className="w-full text-left text-red-600 hover:underline"
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  setUserDropdown(false);
+                  window.location.reload();
+                }}
+              >Logout</button>
+            </div>
+          )}
           <Star className="w-5 h-5 cursor-pointer" />
           <ShoppingCart className="w-5 h-5 cursor-pointer" />
         </div>
+
       </div>
 
       {/* Links - Desktop */}
@@ -141,8 +170,24 @@ export default function Navbar() {
           <div className="w-full flex flex-col items-start pb-4">
             <div className="font-semibold text-base mb-2">My Account</div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition">Login</button>
-              <button className="px-4 py-2 bg-gray-200 text-blue-700 rounded hover:bg-gray-300 transition">Register</button>
+              {user ? (
+                <>
+                  <span className="px-4 py-2 text-blue-800 font-medium">Hey, {user.name}</span>
+                  <button
+                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      setMenuOpen(false);
+                      window.location.reload();
+                    }}
+                  >Logout</button>
+                </>
+              ) : (
+                <>
+                  <button className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition" disabled>Login</button>
+                  <button className="px-4 py-2 bg-gray-200 text-blue-700 rounded hover:bg-gray-300 transition" disabled>Register</button>
+                </>
+              )}
             </div>
           </div>
         </div>
