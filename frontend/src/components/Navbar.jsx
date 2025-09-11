@@ -31,7 +31,7 @@ export default function Navbar() {
     { text: "Etihad Town Phase 3", to: "#" },
     { text: "CEO Message", to: "/ceo-message" },
     { text: "Maps", to: "/maps" },
-    { text: "Contact Us", to: "#" }
+    { text: "Contact Us", to: "contact" }
   ];
 
   return (
