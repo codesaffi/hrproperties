@@ -30,6 +30,7 @@ export default function Navbar() {
     { text: "Etihad Town Phase 2", to: "#" },
     { text: "Etihad Town Phase 3", to: "#" },
     { text: "CEO Message", to: "/ceo-message" },
+    { text: "Maps", to: "/maps" },
     { text: "Contact Us", to: "#" }
   ];
 
@@ -66,7 +67,7 @@ export default function Navbar() {
       {/* Links - Desktop */}
       <div className="hidden md:flex justify-center space-x-8 py-2 border-t text-sm font-medium text-gray-700">
         {navLinks.map((link, idx) => (
-          link.to === "/" || link.to === "/about" ? (
+          link.to.startsWith("/") ? (
             <Link
               key={idx}
               to={link.to}
@@ -107,7 +108,7 @@ export default function Navbar() {
             </button>
             <div className="flex flex-col items-start mt-8">
               {navLinks.map((link, idx) => (
-                link.to === "/" || link.to === "/about" ? (
+                link.to.startsWith("/") ? (
                   <Link
                     key={idx}
                     to={link.to}
