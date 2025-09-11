@@ -5,31 +5,43 @@ import productModel from "../models/productModels.js"
 const addProduct = async (req,res) => {
     try {
         
-        const { name, description, price, category, subCategory, sizes, bestseller } = req.body
+        const { name, description, price, category, subCategory, bestseller, bookingPrice, monthlyPrice, size, phase } = req.body
 
+        // require at least two images: image1 and image2
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
-        const image3 = req.files.image3 && req.files.image3[0]
-        const image4 = req.files.image4 && req.files.image4[0]
+        if (!image1 || !image2) {
+            return res.json({ success: false, message: 'At least two images (image1 and image2) are required' })
+        }
 
-        const images = [image1,image2,image3,image4].filter((item)=> item !== undefined)
+        const images = [image1, image2]
 
-        let imagesUrl = await Promise.all(
-           images.map(async (item) => {
-             let result = await cloudinary.uploader.upload(item.path,{resource_type:"image"});
-             return result.secure_url
-           })
-        )
+        const imagesUrl = []
+        const imageNames = []
+        // ensure Cloudinary is configured
+        if (!process.env.CLOUDINARY_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_SECRET_KEY) {
+            return res.json({ success: false, message: 'Cloudinary credentials are missing. Please set CLOUDINARY_NAME, CLOUDINARY_API_KEY and CLOUDINARY_SECRET_KEY in .env' })
+        }
+
+        for (const item of images) {
+            const result = await cloudinary.uploader.upload(item.path, { resource_type: "image" })
+            imagesUrl.push(result.secure_url)
+            imageNames.push(item.originalname || item.filename || "")
+        }
 
         const productData = {
             name,
-            description,
+            description: description || "",
             category,
             price: Number(price),
-            subCategory,
+            subCategory: subCategory || "",
             bestseller: bestseller === "true" ? true : false,
-            sizes: JSON.parse(sizes),
+            bookingPrice: bookingPrice ? Number(bookingPrice) : undefined,
+            monthlyPrice: monthlyPrice ? Number(monthlyPrice) : undefined,
+            size: size || "",
+            phase: phase || "",
             image: imagesUrl,
+            imageName: imageNames,
             date: Date.now()
         }
 

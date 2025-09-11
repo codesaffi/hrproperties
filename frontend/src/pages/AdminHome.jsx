@@ -20,8 +20,13 @@ export default function AdminHome() {
         </div>
       </div>
 
+      <div className="grid gap-4 md:grid-cols-2 mb-6">
+        <a href="/admin/add-product" className="block bg-white p-6 rounded shadow hover:shadow-md">Add Product</a>
+        <a href="/admin/products" className="block bg-white p-6 rounded shadow hover:shadow-md">List Products</a>
+      </div>
+
       <div className="bg-white rounded shadow p-6">
-        <p>Welcome to the admin homepage. Add admin widgets here (stats, user management, etc.).</p>
+        <p>Welcome to the admin homepage. Use the links above to manage products.</p>
       </div>
     </div>
   );
