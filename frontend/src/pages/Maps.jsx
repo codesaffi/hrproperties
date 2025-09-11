@@ -116,7 +116,7 @@ function ScrollToTopButton() {
 
             {/* Image (mobile-first order) */}
             <div className="order-1 md:order-2 flex justify-center">
-              <h1 className="text-6xl font-bold text-red-600 text-center">Coming soon</h1>
+              <h1 className="text-4xl font-bold text-red-600 text-center">Coming soon</h1>
             </div>
 
 
