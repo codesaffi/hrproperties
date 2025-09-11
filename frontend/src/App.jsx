@@ -12,6 +12,9 @@ import Maps from "./pages/Maps";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import AdminLogin from "./pages/AdminLogin";
+import AdminHome from "./pages/AdminHome";
+import AdminRoute from "./components/AdminRoute";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 // export const adminUrl = import.meta.env.VITE_ADMIN_URL
@@ -29,8 +32,10 @@ export default function App() {
 															<Route path="/ceo-message" element={<Ceo />} />
 															<Route path="/maps" element={<Maps />} />
 															<Route path="/contact" element={<Contact />} />
-                              <Route path="/login" element={<Login />} />
-                              <Route path="/signup" element={<Signup />} />
+							  <Route path="/login" element={<Login />} />
+							  <Route path="/signup" element={<Signup />} />
+							  <Route path="/admin-login" element={<AdminLogin />} />
+							  <Route path="/admin" element={<AdminRoute><AdminHome /></AdminRoute>} />
 														</Routes>
 					<Footer />
 					<ToastContainer />
