@@ -86,17 +86,38 @@ const removeProduct = async (req,res) => {
 }
 
 // funtion for single product info
-const singleProduct = async (req,res) => {
-    try {
+// const singleProduct = async (req,res) => {
+//     try {
 
-        const { productId } = req.body
-        const product = await productModel.findById(productId)
-        res.json({success:true,product})
+//         const { productId } = req.body
+//         const product = await productModel.findById(productId)
+//         res.json({success:true,product})
         
-    } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
-    }
-}
+//     } catch (error) {
+//         console.log(error)
+//         res.json({success:false,message:error.message})
+//     }
+// }
+
+// funtion for single product info
+const singleProduct = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    if (!slug) return res.json({ success: false, message: "Slug is required" });
+
+    // find product by slugified name
+    const product = await productModel.findOne({
+      slug: slug
+    });
+
+    if (!product) return res.json({ success: false, message: "Product not found" });
+
+    res.json({ success: true, product });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 
 export {addProduct,listProducts,removeProduct,singleProduct}

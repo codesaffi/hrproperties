@@ -19,12 +19,13 @@ export default function Navbar() {
   const navLinks = [
     { text: "Home", to: "/" },
     { text: "About", to: "/about" },
-    { text: "Etihad Town Phase 1", to: "#" },
-    { text: "Etihad Town Phase 2", to: "#" },
-    { text: "Etihad Town Phase 3", to: "#" },
+    { text: "Etihad Town Phase 1", to: "phase-1" },
+    { text: "Etihad Town Phase 2", to: "phase-2" },
+    { text: "Etihad Town Phase 3", to: "phase-3" },
     { text: "CEO Message", to: "/ceo-message" },
     { text: "Maps", to: "/maps" },
-    { text: "Contact Us", to: "contact" }
+    { text: "Contact Us", to: "contact" },
+    { text: "admin", to: "admin-login" }
   ];
 
   return (
