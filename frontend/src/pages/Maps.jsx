@@ -5,7 +5,7 @@ import img2 from "../assets/ET_p2map.webp";
 
 export default function Maps() {
   return (
-    <div className="font-sans">
+<>
       <div className="flex flex-col items-center w-full col-span-2 mb-6">
         {/* Section Heading */}
         <h2 className="text-5xl md:text-6xl font-bold text-blue-800 text-center mb-4 mt-8">
@@ -77,6 +77,6 @@ export default function Maps() {
           </div>
         </div>
       </section>
-    </div>
+      </>
   );
-}
+} 

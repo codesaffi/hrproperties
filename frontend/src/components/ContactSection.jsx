@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { ChevronRight, Mail, Phone } from "lucide-react";
 import {
   FaFacebookF,
@@ -8,18 +9,28 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function ContactSection() {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Prevent reload; you can change this to send API/email
-    const form = new FormData(e.currentTarget);
-    console.log("Contact form:", {
-      name: form.get("name"),
-      email: form.get("email"),
-      message: form.get("message"),
-      save: form.get("save") === "on",
-    });
+    setLoading(true);
+
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/contact`,
+        formData
+      );
+      toast.success(res.data.message || "Message sent!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      toast.error("Error sending message. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,7 +78,6 @@ export default function ContactSection() {
           <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-6 h-6 rounded-sm bg-gray-100 flex items-center justify-center">
-                {/* small globe / social badge */}
                 <svg
                   viewBox="0 0 24 24"
                   className="w-4 h-4 text-gray-700"
@@ -82,23 +92,23 @@ export default function ContactSection() {
 
             <div className="flex gap-4 text-2xl mt-1">
               <Link to={"https://www.facebook.com/HRProperties1/"}>
-                <FaFacebookF className="hover:text-blue-400 cursor-pointer" />{" "}
+                <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
               </Link>
               <Link to={"https://www.instagram.com/hrproperties_group/?hl=en"}>
-                <FaInstagram className="hover:text-pink-400 cursor-pointer" />{" "}
+                <FaInstagram className="hover:text-pink-400 cursor-pointer" />
               </Link>
               <Link to={"https://www.youtube.com/HREstateBuilders"}>
-                <FaYoutube className="hover:text-red-400 cursor-pointer" />{" "}
+                <FaYoutube className="hover:text-red-400 cursor-pointer" />
               </Link>
               <Link to={"https://www.tiktok.com/@hrproperties1"}>
-                <FaTiktok className="hover:text-black-400 cursor-pointer" />{" "}
+                <FaTiktok className="hover:text-black cursor-pointer" />
               </Link>
               <Link
                 to={
                   "https://api.whatsapp.com/send/?phone=%2B923322826107&text&type=phone_number&app_absent=0"
                 }
               >
-                <FaWhatsapp className="hover:text-green-400 cursor-pointer" />{" "}
+                <FaWhatsapp className="hover:text-green-400 cursor-pointer" />
               </Link>
             </div>
           </div>
@@ -115,54 +125,52 @@ export default function ContactSection() {
             {/* two inputs side-by-side on md, stacked on mobile */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <input
-                aria-label="Name"
                 name="name"
                 type="text"
                 placeholder="Name"
-                className="w-full border border-gray-200 rounded-md px-4 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full border border-gray-200 rounded-md px-4 py-2"
+                required
               />
               <input
-                aria-label="Email"
                 name="email"
                 type="email"
                 placeholder="Email"
-                className="w-full border border-gray-200 rounded-md px-4 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full border border-gray-200 rounded-md px-4 py-2"
+                required
               />
             </div>
 
             {/* Large textarea */}
             <div className="mb-4">
               <textarea
-                aria-label="Message"
                 name="message"
                 rows={8}
                 placeholder="Message"
-                className="w-full border border-gray-200 rounded-md px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-vertical"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+                className="w-full border border-gray-200 rounded-md px-4 py-3 resize-vertical"
+                required
               />
             </div>
 
-            {/* checkbox and submit */}
-            <div className="flex items-center gap-3 mb-6">
-              <input
-                id="save"
-                name="save"
-                type="checkbox"
-                className="w-4 h-4"
-              />
-              <label htmlFor="save" className="text-sm text-gray-700">
-                Save my name, email, and website in this browser for the next
-                time I comment.
-              </label>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="bg-blue-800 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-900 transition"
-              >
-                Submit Now
-              </button>
-            </div>
+            {/* Submit */}
+            <button
+              type="submit"
+              className="bg-blue-800 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-900 transition"
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Submit Now"}
+            </button>
           </form>
         </div>
       </div>

@@ -8,7 +8,7 @@ import CeoMessage from "../components/CeoMessage";
 
 export default function Home() {
   return (
-    <div className="font-sans">
+    <>       
       <Hero />
       <TrustSection />
       <VideoGallery />
@@ -17,6 +17,6 @@ export default function Home() {
       <OpportunitiesSection />
       <AdVideo src="https://res.cloudinary.com/dyzo70rdx/video/upload/v1757700024/vid_2_e07cjy.mp4" />
       <CeoMessage />
-    </div>
+    </>
   );
 }

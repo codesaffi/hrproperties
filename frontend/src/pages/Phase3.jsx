@@ -37,7 +37,7 @@ export default function Phase3() {
     if (sortOption === "nameZA") return b.name.localeCompare(a.name);
     return 0;
   });
-
+ 
   return (
     <div className="min-h-screen p-6 bg-gray-50">
       <div className="max-w-7xl mx-auto bg-white p-6 rounded shadow">

@@ -56,6 +56,7 @@ export default function App() {
   }
   return (
     <>
+    <div className="font-sans">
       <TopHeadline />
       <Navbar />
       <Routes>
@@ -108,6 +109,7 @@ export default function App() {
       <Footer />
       <ToastContainer />
       <ScrollToTopButton />
+      </div>
     </>
   );
 }

@@ -101,5 +101,5 @@ export default function AdminProducts() {
         )}
       </div>
     </div>
-  );
+  ); 
 }

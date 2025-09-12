@@ -101,6 +101,6 @@ export default function Phase1() {
           </div>
         )}
       </div>
-    </div>
+    </div> 
   );
 }

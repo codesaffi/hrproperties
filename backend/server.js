@@ -5,8 +5,9 @@ import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
-// import cartRouter from './routes/cartRoute.js'
 import orderRouter from "./routes/orderRoute.js";
+import contactRouter from "./routes/contactRoute.js";
+import newsletterRoutes from "./routes/newsletter.js";
 
 // app config
 const app = express();
@@ -36,6 +37,8 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" })); // if needed
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/contact", contactRouter);
+app.use("/api", newsletterRoutes);
 
 app.get("/", (req, res) => {
   res.send("API WORKING");

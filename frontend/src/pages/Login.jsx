@@ -40,7 +40,7 @@ export default function Login() {
     }
   };
 
-  return (
+  return ( 
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <form
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
