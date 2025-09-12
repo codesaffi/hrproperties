@@ -6,22 +6,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 
-import reel9 from "../assets/reel_1.mp4";
-import reel2 from "../assets/reel_2.mp4";
-import reel3 from "../assets/reel_3.mp4";
-import reel4 from "../assets/reel_4.mp4";
-import reel5 from "../assets/reel_5.mp4";
-import reel6 from "../assets/reel_6.mp4";
-import reel7 from "../assets/reel_7.mp4";
-import reel8 from "../assets/reel_8.mp4";
-import reel1 from "../assets/reel_9.mp4";
-import reel10 from "../assets/reel_10.mp4";
-import reel11 from "../assets/reel_11.mp4";
-import reel12 from "../assets/reel_12.mp4";
-import reel13 from "../assets/reel_13.mp4";
-import reel14 from "../assets/reel_14.mp4";
-import reel15 from "../assets/reel_15.mp4";
-
 import img1 from "../assets/img_1.webp";
 import img2 from "../assets/img_2.webp";
 import img3 from "../assets/img_3.webp";
@@ -38,7 +22,6 @@ import img13 from "../assets/img_1.1.webp";
 import img14 from "../assets/img_2.1.webp";
 import img15 from "../assets/img_3.1.webp";
 
-// ✅ FIX: accept `style` prop and use it safely
 function VideoStory({ src, isActive, onEnded, style: videoStyle }) {
   const [playing, setPlaying] = useState(isActive);
   const [preview, setPreview] = useState(true);
@@ -88,8 +71,10 @@ function VideoStory({ src, isActive, onEnded, style: videoStyle }) {
       ref={videoRef}
       src={src}
       autoPlay={isActive}
-      muted={true}
+      muted={false} // 🔊 sound enabled
       controls={!preview}
+      playsInline
+      preload="metadata" // ⚡ only load metadata first
       className="object-cover rounded-lg shadow-lg transition-all duration-300"
       style={
         typeof videoStyle === "object"
@@ -104,7 +89,6 @@ function VideoStory({ src, isActive, onEnded, style: videoStyle }) {
 }
 
 export default function VideoGallery() {
-  // Detect mobile device
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -114,21 +98,21 @@ export default function VideoGallery() {
   }, []);
 
   const videos = [
-    { id: 1, src: reel1, thumb: img1 },
-    { id: 2, src: reel2, thumb: img2 },
-    { id: 3, src: reel3, thumb: img3 },
-    { id: 4, src: reel4, thumb: img4 },
-    { id: 5, src: reel5, thumb: img5 },
-    { id: 6, src: reel6, thumb: img6 },
-    { id: 7, src: reel7, thumb: img7 },
-    { id: 8, src: reel8, thumb: img8 },
-    { id: 9, src: reel9, thumb: img9 },
-    { id: 10, src: reel10, thumb: img10 },
-    { id: 11, src: reel11, thumb: img11 },
-    { id: 12, src: reel12, thumb: img12 },
-    { id: 13, src: reel13, thumb: img13 },
-    { id: 14, src: reel14, thumb: img14 },
-    { id: 15, src: reel15, thumb: img15 },
+    { id: 1, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698123/reel_7_eufwnm.mp4", thumb: img1 },
+    { id: 2, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698276/reel_15_kmrxzq.mp4", thumb: img2 },
+    { id: 3, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698080/reel_9_uxr08x.mp4", thumb: img3 },
+    { id: 4, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698072/reel_6_k6l6up.mp4", thumb: img4 },
+    { id: 5, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698068/reel_8_bhc1mp.mp4", thumb: img5 },
+    { id: 6, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697891/reel_2_cxw1qk.mp4", thumb: img6 },
+    { id: 7, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697859/reel_1_emdmed.mp4", thumb: img7 },
+    { id: 8, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697823/reel_4_gya4us.mp4", thumb: img8 },
+    { id: 9, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697782/reel_14_ggxcxh.mp4", thumb: img9 },
+    { id: 10, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697758/reel_3_gd5g6h.mp4", thumb: img10 },
+    { id: 11, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697726/reel_13_lzmgzt.mp4", thumb: img11 },
+    { id: 12, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697699/reel_12_le8mdo.mp4", thumb: img12 },
+    { id: 13, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697686/reel_11_pcosdw.mp4", thumb: img13 },
+    { id: 14, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697685/reel_5_rrqbpa.mp4", thumb: img14 },
+    { id: 15, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697667/reel_10_mrj4nz.mp4", thumb: img15 },
   ];
 
   const [activeVideo, setActiveVideo] = useState(null);
@@ -136,7 +120,6 @@ export default function VideoGallery() {
 
   useEffect(() => setMounted(true), []);
 
-  // When modal is open, lock body scroll; restore when closed
   useEffect(() => {
     if (activeVideo) {
       document.body.style.overflow = "hidden";
@@ -148,7 +131,6 @@ export default function VideoGallery() {
     };
   }, [activeVideo]);
 
-  // Unified close handler: pause videos, destroy swiper, restore state
   const handleClose = (event) => {
     if (event) {
       try {
@@ -156,8 +138,6 @@ export default function VideoGallery() {
         event.stopPropagation();
       } catch {}
     }
-
-    // Pause + reset any <video> elements inside modal
     try {
       const vids = document.querySelectorAll(".video-modal video");
       vids.forEach((v) => {
@@ -167,21 +147,16 @@ export default function VideoGallery() {
         } catch {}
       });
     } catch {}
-
-    // Destroy modal swiper if exists to avoid leftover listeners
     try {
       if (window._modalSwiper && typeof window._modalSwiper.destroy === "function") {
         window._modalSwiper.destroy(true, true);
       }
       window._modalSwiper = null;
     } catch {}
-
-    // restore scroll + close modal
     document.body.style.overflow = "";
     setActiveVideo(null);
   };
 
-  // Escape key handler (robust)
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape" && activeVideo) {
@@ -194,15 +169,12 @@ export default function VideoGallery() {
     };
     window.addEventListener("keydown", onKey, { capture: true });
     return () => window.removeEventListener("keydown", onKey, { capture: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeVideo]);
 
-  // Modal JSX (render into body to avoid stacking context issues)
   const modal = activeVideo ? (
     <div
       className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[99999] video-modal"
       onClick={(e) => {
-        // close only if the backdrop itself was clicked
         if (e.target === e.currentTarget) handleClose(e);
       }}
       role="dialog"
@@ -212,7 +184,6 @@ export default function VideoGallery() {
         type="button"
         aria-label="Close"
         onMouseDown={(e) => {
-          // avoid any accidental native focus/submit behavior
           try {
             e.preventDefault();
           } catch {}
@@ -245,10 +216,7 @@ export default function VideoGallery() {
             virtual
             loop={true}
             className="fixed inset-0 w-screen h-screen bg-black z-50"
-            style={{
-              width: "100vw",
-              height: "100vh",
-            }}
+            style={{ width: "100vw", height: "100vh" }}
             onSwiper={(swiper) => (window._modalSwiper = swiper)}
           >
             {videos.map((video, idx) => (
@@ -267,11 +235,7 @@ export default function VideoGallery() {
                         window._modalSwiper.slideTo((idx + 1) % videos.length);
                     }, 100);
                   }}
-                  style={{
-                    width: "100vw",
-                    height: "100vh",
-                    objectFit: "cover",
-                  }}
+                  style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
                 />
               </SwiperSlide>
             ))}
@@ -304,9 +268,7 @@ export default function VideoGallery() {
                         setActiveVideo(videos[(idx + 1) % videos.length]);
                         setTimeout(() => {
                           if (window._modalSwiper)
-                            window._modalSwiper.slideTo(
-                              (idx + 1) % videos.length
-                            );
+                            window._modalSwiper.slideTo((idx + 1) % videos.length);
                         }, 100);
                       }}
                       style={
@@ -366,7 +328,6 @@ export default function VideoGallery() {
         </Swiper>
       </div>
 
-      {/* portal modal appended to body to avoid stacking/context issues */}
       {mounted && modal ? createPortal(modal, document.body) : null}
     </section>
   );

@@ -6,8 +6,6 @@ import VideoGallery from "../components/VideoGallery";
 import InvestmentSection from "../components/InvestmentSection";
 import AdVideo from "../components/AdVideo";
 import OpportunitiesSection from "../components/OpportunitiesSection";
-import vid1 from "../assets/vid_1.mp4";
-import vid2 from "../assets/vid_2.mp4";
 import CeoMessage from "../components/CeoMessage";
 
 
@@ -44,9 +42,9 @@ function ScrollToTopButton() {
       <TrustSection />
       <VideoGallery />
       <InvestmentSection />
-      <AdVideo src={vid1} />
+      <AdVideo src="https://res.cloudinary.com/dyzo70rdx/video/upload/v1757700146/vid_1_mfdb6e.mp4" />
       <OpportunitiesSection />
-      <AdVideo src={vid2}  />
+      <AdVideo src="https://res.cloudinary.com/dyzo70rdx/video/upload/v1757700024/vid_2_e07cjy.mp4"  />
       <CeoMessage />
   <ScrollToTopButton />
     </div>
