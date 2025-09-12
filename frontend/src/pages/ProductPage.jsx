@@ -157,10 +157,13 @@ export default function ProductPage() {
             </div>
           )}
 
-          {/* Button */}
-          <button className="mt-8 w-full bg-blue-700 text-white py-3 rounded hover:bg-blue-800 transition">
-            Schedule a Free Call →
-          </button>
+{/* Order Button */}
+<Link
+  to={`/order/${product.slug}`}
+  className="mt-8 block text-center w-full bg-blue-700 text-white py-3 rounded hover:bg-blue-800 transition"
+>
+  Schedule a Free Call →
+</Link>gi
         </div>
       </div>
 
