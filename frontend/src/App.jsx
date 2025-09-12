@@ -3,8 +3,6 @@ import TopHeadline from "./components/TopHeadline";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ToastContainer } from 'react-toastify';
-
-
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Ceo from "./pages/Ceo";
@@ -22,11 +20,9 @@ import Phase2 from "./pages/Phase2";
 import Phase3 from "./pages/Phase3";
 import ProductPage from "./pages/ProductPage";
 import OrderPage from "./pages/OrderPage";
+import AdminOrders from "./pages/AdminOrders";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
-// export const adminUrl = import.meta.env.VITE_ADMIN_URL
-
-
 
 export default function App() {
 			return (
@@ -48,6 +44,10 @@ export default function App() {
 							  <Route path="/admin" element={<AdminRoute><AdminHome /></AdminRoute>} />
 							  <Route path="/admin/add-product" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
 							  <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+                <Route
+  path="/admin/orders"
+  element={<AdminRoute><AdminOrders /></AdminRoute>}
+/>
                  <Route path="/products/:slug" element={<ProductPage />} />
                  <Route path="/order/:slug" element={<OrderPage />} />
 														</Routes>

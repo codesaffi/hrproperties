@@ -163,7 +163,7 @@ export default function ProductPage() {
   className="mt-8 block text-center w-full bg-blue-700 text-white py-3 rounded hover:bg-blue-800 transition"
 >
   Schedule a Free Call →
-</Link>gi
+</Link>
         </div>
       </div>
 
@@ -188,7 +188,7 @@ export default function ProductPage() {
       </p>
 
       <p className="mb-6">
-        The <strong> {product.subCategory} of phase {product.phase}</strong> is carefully planned to offer maximum value with top-quality <strong>infrastructure, modern facilities, sustainability, and a well-connected lifestyle</strong>. Designed for families and investors alike, Etihad Town combines convenience, natural beauty, and modern living standards to create a community like no other.
+        The <strong> {product.subCategory} plots of phase {product.phase}</strong> is carefully planned to offer maximum value with top-quality <strong>infrastructure, modern facilities, sustainability, and a well-connected lifestyle</strong>. Designed for families and investors alike, Etihad Town combines convenience, natural beauty, and modern living standards to create a community like no other.
       </p>
 
             {/* Features & Facilities */}

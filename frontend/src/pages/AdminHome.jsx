@@ -5,6 +5,7 @@ export default function AdminHome() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen p-8">
+      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Admin Dashboard</h1>
         <div>
@@ -20,13 +21,31 @@ export default function AdminHome() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 mb-6">
-        <a href="/admin/add-product" className="block bg-white p-6 rounded shadow hover:shadow-md">Add Product</a>
-        <a href="/admin/products" className="block bg-white p-6 rounded shadow hover:shadow-md">List Products</a>
+      {/* Quick Links */}
+      <div className="grid gap-4 md:grid-cols-3 mb-6">
+        <a
+          href="/admin/add-product"
+          className="block bg-white p-6 rounded shadow hover:shadow-md"
+        >
+          Add Product
+        </a>
+        <a
+          href="/admin/products"
+          className="block bg-white p-6 rounded shadow hover:shadow-md"
+        >
+          List Products
+        </a>
+        <a
+          href="/admin/orders"
+          className="block bg-white p-6 rounded shadow hover:shadow-md"
+        >
+          View Orders
+        </a>
       </div>
 
+      {/* Info Box */}
       <div className="bg-white rounded shadow p-6">
-        <p>Welcome to the admin homepage. Use the links above to manage products.</p>
+        <p>Welcome to the admin homepage. Use the links above to manage products and view orders.</p>
       </div>
     </div>
   );

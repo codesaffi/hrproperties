@@ -41,4 +41,24 @@ const listOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, listOrders };
+// Update order status (admin only)
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const { id } = req.params;
+
+    const order = await orderModel.findById(id);
+    if (!order) return res.json({ success: false, message: "Order not found" });
+
+    order.status = status;
+    await order.save();
+
+    res.json({ success: true, message: "Order status updated", order });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
+export { placeOrder, listOrders, updateOrderStatus };
