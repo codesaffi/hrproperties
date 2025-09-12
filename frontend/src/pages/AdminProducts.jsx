@@ -10,7 +10,7 @@ export default function AdminProducts() {
     try {
       setLoading(true);
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/product/list`
+        `${backendUrl}/api/product/list`
       );
       const data = await res.json();
       if (!data.success) throw new Error(data.message || "Failed to load");
@@ -31,7 +31,7 @@ export default function AdminProducts() {
     try {
       const token = localStorage.getItem("adminToken");
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/product/remove`,
+        `${backendUrl}/api/product/remove`,
         {
           method: "POST",
           headers: {

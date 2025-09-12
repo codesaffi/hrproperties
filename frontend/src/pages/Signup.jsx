@@ -27,7 +27,7 @@ export default function Signup() {
       else body.phone = emailOrPhone;
 
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/user/register`,
+        `${backendUrl}/api/user/register`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

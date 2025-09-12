@@ -42,7 +42,7 @@ export default function AdminAddProduct() {
 
       const token = localStorage.getItem("adminToken");
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/product/add`,
+        `${backendUrl}/api/product/add`,
         {
           method: "POST",
           headers: {

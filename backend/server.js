@@ -11,6 +11,7 @@ import orderRouter from "./routes/orderRoute.js";
 // app config
 const app = express();
 const port = process.env.PORT || 4000;
+const frontend_link = process.env.VITE_FRONTEND_URL;
 connectDB();
 try {
   connectCloudinary();
@@ -23,7 +24,7 @@ try {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: `${frontend_link}`,
     credentials: true, // only if you’re sending cookies or auth headers
   })
 );
@@ -40,4 +41,4 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.listen(port, () => console.log("Server started running on PORT :" + port));
+app.listen(port, () => console.log("Server started running on PORT :" + port ));

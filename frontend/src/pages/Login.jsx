@@ -13,7 +13,7 @@ export default function Login() {
     e.preventDefault();
     setError("");
     // client-side validation
-    if (!emailOrPhone.trim()) return setError("Email or phone is required");
+    if (!emailOrPhone.trim()) return setError("Email is required");
     if (!password) return setError("Password is required");
     try {
       const body = { password };
@@ -21,7 +21,7 @@ export default function Login() {
       else body.phone = emailOrPhone;
 
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/user/login`,
+        `${backendUrl}/api/user/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

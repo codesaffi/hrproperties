@@ -17,7 +17,7 @@ export default function AdminLogin() {
     try {
       setLoading(true);
       const res = await fetch(
-        `${backendUrl || "http://localhost:4000"}/api/user/admin`,
+        `${backendUrl}/api/user/admin`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
