@@ -15,7 +15,6 @@ import img4_1 from "../assets/img_4.1.webp";
 import { useEffect, useState } from "react";
 
 export default function Hero() {
-
   // Responsive image selection
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -30,7 +29,7 @@ export default function Hero() {
     : [img1, img2, img3, img4];
 
   return (
-    <div className={`relative w-full ${isMobile ? 'h-[70vh]' : 'h-[100vh]'}`}>
+    <div className={`relative w-full ${isMobile ? "h-[70vh]" : "h-[100vh]"}`}>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
@@ -44,8 +43,7 @@ export default function Hero() {
             <div
               className="w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url(${img})` }}
-            >
-            </div>
+            ></div>
           </SwiperSlide>
         ))}
       </Swiper>

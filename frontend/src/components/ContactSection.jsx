@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Mail, Phone } from "lucide-react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import { FaTiktok, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
 
 export default function ContactSection() {
   const handleSubmit = (e) => {
@@ -63,29 +69,38 @@ export default function ContactSection() {
             <div className="flex items-center gap-3 mb-2">
               <div className="w-6 h-6 rounded-sm bg-gray-100 flex items-center justify-center">
                 {/* small globe / social badge */}
-                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-700" fill="currentColor" aria-hidden>
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4 text-gray-700"
+                  fill="currentColor"
+                  aria-hidden
+                >
                   <path d="M12 2a10 10 0 100 20 10 10 0 000-20zM7.5 9.5a1 1 0 110-2 1 1 0 010 2zm9 0a1 1 0 110-2 1 1 0 010 2zM12 17a4.5 4.5 0 01-4.5-4.5h9A4.5 4.5 0 0112 17z" />
                 </svg>
               </div>
               <h4 className="text-blue-800 font-medium">Social Media</h4>
             </div>
 
-            <div className="flex gap-4 text-2xl text-gray-700 mt-1">
-              <a aria-label="facebook" href="#" className="w-7 h-7 flex items-center justify-center text-blue-600 hover:text-blue-800">
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a aria-label="instagram" href="#" className="w-7 h-7 flex items-center justify-center text-pink-500 hover:text-pink-700">
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a aria-label="youtube" href="#" className="w-7 h-7 flex items-center justify-center text-red-600 hover:text-red-800">
-                <Youtube className="w-6 h-6" />
-              </a>
-              <a aria-label="tiktok" href="#" className="w-7 h-7 flex items-center justify-center text-black hover:text-gray-700">
-                <FaTiktok className="w-6 h-6" />
-              </a>
-              <a aria-label="whatsapp" href="#" className="w-7 h-7 flex items-center justify-center text-green-600 hover:text-green-800">
-                <FaWhatsapp className="w-6 h-6" />
-              </a>
+            <div className="flex gap-4 text-2xl mt-1">
+              <Link to={"https://www.facebook.com/HRProperties1/"}>
+                <FaFacebookF className="hover:text-blue-400 cursor-pointer" />{" "}
+              </Link>
+              <Link to={"https://www.instagram.com/hrproperties_group/?hl=en"}>
+                <FaInstagram className="hover:text-pink-400 cursor-pointer" />{" "}
+              </Link>
+              <Link to={"https://www.youtube.com/HREstateBuilders"}>
+                <FaYoutube className="hover:text-red-400 cursor-pointer" />{" "}
+              </Link>
+              <Link to={"https://www.tiktok.com/@hrproperties1"}>
+                <FaTiktok className="hover:text-black-400 cursor-pointer" />{" "}
+              </Link>
+              <Link
+                to={
+                  "https://api.whatsapp.com/send/?phone=%2B923322826107&text&type=phone_number&app_absent=0"
+                }
+              >
+                <FaWhatsapp className="hover:text-green-400 cursor-pointer" />{" "}
+              </Link>
             </div>
           </div>
         </div>
@@ -129,9 +144,15 @@ export default function ContactSection() {
 
             {/* checkbox and submit */}
             <div className="flex items-center gap-3 mb-6">
-              <input id="save" name="save" type="checkbox" className="w-4 h-4" />
+              <input
+                id="save"
+                name="save"
+                type="checkbox"
+                className="w-4 h-4"
+              />
               <label htmlFor="save" className="text-sm text-gray-700">
-                Save my name, email, and website in this browser for the next time I comment.
+                Save my name, email, and website in this browser for the next
+                time I comment.
               </label>
             </div>
 

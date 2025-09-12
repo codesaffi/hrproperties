@@ -31,7 +31,7 @@ export default function TrustSection() {
           Why Trust HR Properties
         </h2>
 
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {items.map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center">
               {item.icon}

@@ -60,5 +60,4 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-
 export { placeOrder, listOrders, updateOrderStatus };

@@ -6,7 +6,6 @@ export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // fetch orders
   const fetchOrders = async () => {
     try {
       const res = await fetch(`${backendUrl}/api/order/list`);
@@ -24,7 +23,6 @@ export default function AdminOrders() {
     fetchOrders();
   }, []);
 
-  // update order status
   const updateStatus = async (orderId, newStatus) => {
     try {
       const res = await fetch(`${backendUrl}/api/order/update/${orderId}`, {
@@ -35,74 +33,173 @@ export default function AdminOrders() {
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
       toast.success("Order updated!");
-      fetchOrders(); // refresh list
+      fetchOrders();
     } catch (err) {
       toast.error(err.message);
     }
   };
 
-  if (loading) return <div className="p-10 text-center">Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+      </div>
+    );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <h1 className="text-2xl font-bold mb-6">All Orders</h1>
+    <div className="min-h-screen p-6 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6 text-gray-800">All Orders</h1>
 
-      {orders.length === 0 ? (
-        <p>No orders found.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="border px-4 py-2">Product</th>
-                <th className="border px-4 py-2">Customer</th>
-                <th className="border px-4 py-2">Phone</th>
-                <th className="border px-4 py-2">Address</th>
-                <th className="border px-4 py-2">Status</th>
-                <th className="border px-4 py-2">Date</th>
-                <th className="border px-4 py-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+        {orders.length === 0 ? (
+          <p className="text-center text-gray-500">No orders found.</p>
+        ) : (
+          <>
+            {/* Desktop Table */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-gray-100 text-gray-700 text-sm">
+                    <th className="px-4 py-3 text-left">Product</th>
+                    <th className="px-4 py-3">Customer</th>
+                    <th className="px-4 py-3">Phone</th>
+                    <th className="px-4 py-3">Address</th>
+                    <th className="px-4 py-3">Status</th>
+                    <th className="px-4 py-3">Date</th>
+                    <th className="px-4 py-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order, i) => (
+                    <tr
+                      key={order._id}
+                      className={`border-t text-sm ${
+                        i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                      }`}
+                    >
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={order.product?.image[0]}
+                            alt={order.product?.name}
+                            className="w-12 h-12 object-cover rounded-md shadow"
+                          />
+                          <span className="font-medium text-gray-800">
+                            {order.product?.name}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">{order.name}</td>
+                      <td className="px-4 py-3">{order.phone}</td>
+                      <td className="px-4 py-3">{order.address}</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            order.status === "pending"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : order.status === "confirmed"
+                              ? "bg-blue-100 text-blue-700"
+                              : order.status === "shipped"
+                              ? "bg-purple-100 text-purple-700"
+                              : "bg-green-100 text-green-700"
+                          }`}
+                        >
+                          {order.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {new Date(order.date).toLocaleDateString()}
+                      </td>
+                      <td className="px-4 py-3">
+                        <select
+                          value={order.status}
+                          onChange={(e) =>
+                            updateStatus(order._id, e.target.value)
+                          }
+                          className="border border-gray-300 px-3 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="confirmed">Confirmed</option>
+                          <option value="shipped">Shipped</option>
+                          <option value="delivered">Delivered</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="md:hidden space-y-4">
               {orders.map((order) => (
-                <tr key={order._id} className="text-center">
-                  <td className="border px-4 py-2">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={order.product?.image[0]}
-                        alt={order.product?.name}
-                        className="w-12 h-12 object-cover rounded"
-                      />
-                      <span>{order.product?.name}</span>
+                <div
+                  key={order._id}
+                  className="bg-white rounded-xl shadow p-4 flex flex-col gap-3"
+                >
+                  <div className="flex items-start gap-3">
+                    <img
+                      src={order.product?.image[0]}
+                      alt={order.product?.name}
+                      className="w-16 h-16 object-cover rounded-md flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-800 text-lg break-words">
+                        {order.product?.name}
+                      </h3>
+                      <p className="text-gray-500 text-sm">{order.category}</p>
                     </div>
-                  </td>
-                  <td className="border px-4 py-2">{order.name}</td>
-                  <td className="border px-4 py-2">{order.phone}</td>
-                  <td className="border px-4 py-2">{order.address}</td>
-                  <td className="border px-4 py-2 font-semibold">
-                    {order.status}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {new Date(order.date).toLocaleDateString()}
-                  </td>
-                  <td className="border px-4 py-2">
+                  </div>
+
+                  <div className="text-gray-700 text-sm">
+                    <p>
+                      <span className="font-medium">Customer:</span>{" "}
+                      {order.name}
+                    </p>
+                    <p>
+                      <span className="font-medium">Phone:</span> {order.phone}
+                    </p>
+                    <p>
+                      <span className="font-medium">Address:</span>{" "}
+                      {order.address}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        order.status === "pending"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : order.status === "confirmed"
+                          ? "bg-blue-100 text-blue-700"
+                          : order.status === "shipped"
+                          ? "bg-purple-100 text-purple-700"
+                          : "bg-green-100 text-green-700"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
                     <select
                       value={order.status}
                       onChange={(e) => updateStatus(order._id, e.target.value)}
-                      className="border px-2 py-1 rounded"
+                      className="border border-gray-300 px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     >
                       <option value="pending">Pending</option>
                       <option value="confirmed">Confirmed</option>
                       <option value="shipped">Shipped</option>
                       <option value="delivered">Delivered</option>
                     </select>
-                  </td>
-                </tr>
+                  </div>
+
+                  <p className="text-gray-500 text-xs">
+                    Date: {new Date(order.date).toLocaleDateString()}
+                  </p>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

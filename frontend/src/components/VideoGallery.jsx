@@ -98,21 +98,81 @@ export default function VideoGallery() {
   }, []);
 
   const videos = [
-    { id: 1, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698123/reel_7_eufwnm.mp4", thumb: img1 },
-    { id: 2, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698276/reel_15_kmrxzq.mp4", thumb: img2 },
-    { id: 3, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698080/reel_9_uxr08x.mp4", thumb: img3 },
-    { id: 4, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698072/reel_6_k6l6up.mp4", thumb: img4 },
-    { id: 5, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698068/reel_8_bhc1mp.mp4", thumb: img5 },
-    { id: 6, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697891/reel_2_cxw1qk.mp4", thumb: img6 },
-    { id: 7, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697859/reel_1_emdmed.mp4", thumb: img7 },
-    { id: 8, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697823/reel_4_gya4us.mp4", thumb: img8 },
-    { id: 9, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697782/reel_14_ggxcxh.mp4", thumb: img9 },
-    { id: 10, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697758/reel_3_gd5g6h.mp4", thumb: img10 },
-    { id: 11, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697726/reel_13_lzmgzt.mp4", thumb: img11 },
-    { id: 12, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697699/reel_12_le8mdo.mp4", thumb: img12 },
-    { id: 13, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697686/reel_11_pcosdw.mp4", thumb: img13 },
-    { id: 14, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697685/reel_5_rrqbpa.mp4", thumb: img14 },
-    { id: 15, src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697667/reel_10_mrj4nz.mp4", thumb: img15 },
+    {
+      id: 1,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698123/reel_7_eufwnm.mp4",
+      thumb: img1,
+    },
+    {
+      id: 2,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698276/reel_15_kmrxzq.mp4",
+      thumb: img2,
+    },
+    {
+      id: 3,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698080/reel_9_uxr08x.mp4",
+      thumb: img3,
+    },
+    {
+      id: 4,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698072/reel_6_k6l6up.mp4",
+      thumb: img4,
+    },
+    {
+      id: 5,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757698068/reel_8_bhc1mp.mp4",
+      thumb: img5,
+    },
+    {
+      id: 6,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697891/reel_2_cxw1qk.mp4",
+      thumb: img6,
+    },
+    {
+      id: 7,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697859/reel_1_emdmed.mp4",
+      thumb: img7,
+    },
+    {
+      id: 8,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697823/reel_4_gya4us.mp4",
+      thumb: img8,
+    },
+    {
+      id: 9,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697782/reel_14_ggxcxh.mp4",
+      thumb: img9,
+    },
+    {
+      id: 10,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697758/reel_3_gd5g6h.mp4",
+      thumb: img10,
+    },
+    {
+      id: 11,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697726/reel_13_lzmgzt.mp4",
+      thumb: img11,
+    },
+    {
+      id: 12,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697699/reel_12_le8mdo.mp4",
+      thumb: img12,
+    },
+    {
+      id: 13,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697686/reel_11_pcosdw.mp4",
+      thumb: img13,
+    },
+    {
+      id: 14,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697685/reel_5_rrqbpa.mp4",
+      thumb: img14,
+    },
+    {
+      id: 15,
+      src: "https://res.cloudinary.com/dyzo70rdx/video/upload/v1757697667/reel_10_mrj4nz.mp4",
+      thumb: img15,
+    },
   ];
 
   const [activeVideo, setActiveVideo] = useState(null);
@@ -148,7 +208,10 @@ export default function VideoGallery() {
       });
     } catch {}
     try {
-      if (window._modalSwiper && typeof window._modalSwiper.destroy === "function") {
+      if (
+        window._modalSwiper &&
+        typeof window._modalSwiper.destroy === "function"
+      ) {
         window._modalSwiper.destroy(true, true);
       }
       window._modalSwiper = null;
@@ -168,7 +231,8 @@ export default function VideoGallery() {
       }
     };
     window.addEventListener("keydown", onKey, { capture: true });
-    return () => window.removeEventListener("keydown", onKey, { capture: true });
+    return () =>
+      window.removeEventListener("keydown", onKey, { capture: true });
   }, [activeVideo]);
 
   const modal = activeVideo ? (
@@ -235,7 +299,11 @@ export default function VideoGallery() {
                         window._modalSwiper.slideTo((idx + 1) % videos.length);
                     }, 100);
                   }}
-                  style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
+                  style={{
+                    width: "100vw",
+                    height: "100vh",
+                    objectFit: "cover",
+                  }}
                 />
               </SwiperSlide>
             ))}
@@ -268,7 +336,9 @@ export default function VideoGallery() {
                         setActiveVideo(videos[(idx + 1) % videos.length]);
                         setTimeout(() => {
                           if (window._modalSwiper)
-                            window._modalSwiper.slideTo((idx + 1) % videos.length);
+                            window._modalSwiper.slideTo(
+                              (idx + 1) % videos.length
+                            );
                         }, 100);
                       }}
                       style={

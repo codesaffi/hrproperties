@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -12,8 +11,8 @@ export default function AdminHome() {
           <button
             className="px-4 py-2 bg-red-600 text-white rounded"
             onClick={() => {
-              localStorage.removeItem('adminToken');
-              navigate('/admin-login');
+              localStorage.removeItem("adminToken");
+              navigate("/admin-login");
             }}
           >
             Logout
@@ -21,31 +20,34 @@ export default function AdminHome() {
         </div>
       </div>
 
+      {/* Info Box */}
+      <div className="bg-white rounded shadow p-6 mb-6">
+        <p>
+          Welcome to the admin homepage. Use the links below to manage products
+          and view orders.
+        </p>
+      </div>
+
       {/* Quick Links */}
       <div className="grid gap-4 md:grid-cols-3 mb-6">
-        <a
-          href="/admin/add-product"
+        <Link
+          to={"/admin/add-product"}
           className="block bg-white p-6 rounded shadow hover:shadow-md"
         >
           Add Product
-        </a>
-        <a
-          href="/admin/products"
+        </Link>
+        <Link
+          to={"/admin/products"}
           className="block bg-white p-6 rounded shadow hover:shadow-md"
         >
           List Products
-        </a>
-        <a
-          href="/admin/orders"
+        </Link>
+        <Link
+          to={"/admin/orders"}
           className="block bg-white p-6 rounded shadow hover:shadow-md"
         >
           View Orders
-        </a>
-      </div>
-
-      {/* Info Box */}
-      <div className="bg-white rounded shadow p-6">
-        <p>Welcome to the admin homepage. Use the links above to manage products and view orders.</p>
+        </Link>
       </div>
     </div>
   );

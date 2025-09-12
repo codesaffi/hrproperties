@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { backendUrl } from "../App";
 import { toast } from "react-toastify";
-import { ChevronRight, Cog, Headphones, LineChart, ShieldCheck } from "lucide-react";
+import {
+  ChevronRight,
+  Cog,
+  Headphones,
+  LineChart,
+  ShieldCheck,
+} from "lucide-react";
 import img1 from "../assets/product-img.webp";
 import img2 from "../assets/product-img.webp";
 import img3 from "../assets/product-img.webp";
@@ -37,9 +43,10 @@ export default function ProductPage() {
   }, [slug]);
 
   if (loading) return <div className="p-10 text-center">Loading...</div>;
-  if (!product) return <div className="p-10 text-center">Product not found</div>;
+  if (!product)
+    return <div className="p-10 text-center">Product not found</div>;
 
-    const items = [
+  const items = [
     {
       icon: <LineChart className="w-12 h-12 text-blue-700" />,
       title: "Proven Track Record",
@@ -128,7 +135,7 @@ export default function ProductPage() {
           {/* Size */}
           <div className="mb-4">
             <span className="block text-gray-700 mb-1 font-medium">Size:</span>
-            <div className="bg-black text-white px-4 py-2 rounded w-fit">
+            <div className="bg-blue-700 text-white px-4 py-2 rounded w-fit">
               {product.size}
             </div>
           </div>
@@ -139,7 +146,7 @@ export default function ProductPage() {
               <span className="block text-gray-700 mb-1 font-medium">
                 Booking 10%:
               </span>
-              <div className="bg-black text-white px-4 py-2 rounded w-fit">
+              <div className="bg-blue-700 text-white px-4 py-2 rounded w-fit">
                 {product.bookingPrice}
               </div>
             </div>
@@ -151,19 +158,19 @@ export default function ProductPage() {
               <span className="block text-gray-700 mb-1 font-medium">
                 Monthly Installment (36 Installments):
               </span>
-              <div className="bg-black text-white px-4 py-2 rounded w-fit">
+              <div className="bg-blue-700 text-white px-4 py-2 rounded w-fit">
                 {product.monthlyPrice}
               </div>
             </div>
           )}
 
-{/* Order Button */}
-<Link
-  to={`/order/${product.slug}`}
-  className="mt-8 block text-center w-full bg-blue-700 text-white py-3 rounded hover:bg-blue-800 transition"
->
-  Schedule a Free Call →
-</Link>
+          {/* Order Button */}
+          <Link
+            to={`/order/${product.slug}`}
+            className="mt-8 block text-center w-full bg-blue-700 text-white py-3 rounded hover:bg-blue-800 transition rounded-full"
+          >
+            Schedule a Free Call →
+          </Link>
         </div>
       </div>
 
@@ -183,46 +190,95 @@ export default function ProductPage() {
 
         {showDescription && (
           <div className="mt-3 text-gray-600">
-                  <p className="mb-6">
-        Step into the calm and charm of <strong>Etihad Town Lahore</strong>, where life unfolds in a world of <strong className="text-blue-700">peace, comfort, and affordable luxury</strong>. Backed by <strong className="underline">LDA approval</strong>, Etihad Town guarantees not only safe investment and trustworthy development but also the delivery of every promise to its residents.
-      </p>
+            <p className="mb-6">
+              Step into the calm and charm of{" "}
+              <strong>Etihad Town Lahore</strong>, where life unfolds in a world
+              of{" "}
+              <strong className="text-blue-700">
+                peace, comfort, and affordable luxury
+              </strong>
+              . Backed by <strong className="underline">LDA approval</strong>,
+              Etihad Town guarantees not only safe investment and trustworthy
+              development but also the delivery of every promise to its
+              residents.
+            </p>
 
-      <p className="mb-6">
-        The <strong> {product.subCategory} plots of phase {product.phase}</strong> is carefully planned to offer maximum value with top-quality <strong>infrastructure, modern facilities, sustainability, and a well-connected lifestyle</strong>. Designed for families and investors alike, Etihad Town combines convenience, natural beauty, and modern living standards to create a community like no other.
-      </p>
+            <p className="mb-6">
+              The{" "}
+              <strong>
+                {" "}
+                {product.subCategory} plots of phase {product.phase}
+              </strong>{" "}
+              is carefully planned to offer maximum value with top-quality{" "}
+              <strong>
+                infrastructure, modern facilities, sustainability, and a
+                well-connected lifestyle
+              </strong>
+              . Designed for families and investors alike, Etihad Town combines
+              convenience, natural beauty, and modern living standards to create
+              a community like no other.
+            </p>
 
             {/* Features & Facilities */}
-      <div className="mb-10">
-        <h2 className="text-xl font-semibold text-blue-800 mb-4">Features & Facilities</h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li>Grand Mosque</li>
-          <li>Wide Carpeted Roads & Green Belts</li>
-          <li>Landscaped Parks & Playgrounds</li>
-          <li>Secure Boundary Wall</li>
-          <li>Gated Community with 24/7 Security</li>
-          <li>Vibrant Commercial Areas</li>
-          <li>Community Centers & Lifestyle Amenities</li>
-          <li>Reliable Water Supply System</li>
-          <li>Sustainable & Eco-Friendly Development</li>
-        </ul>
-      </div>
+            <div className="mb-10">
+              <h2 className="text-xl font-semibold text-blue-800 mb-4">
+                Features & Facilities
+              </h2>
+              <ul className="list-disc list-inside space-y-2">
+                <li>Grand Mosque</li>
+                <li>Wide Carpeted Roads & Green Belts</li>
+                <li>Landscaped Parks & Playgrounds</li>
+                <li>Secure Boundary Wall</li>
+                <li>Gated Community with 24/7 Security</li>
+                <li>Vibrant Commercial Areas</li>
+                <li>Community Centers & Lifestyle Amenities</li>
+                <li>Reliable Water Supply System</li>
+                <li>Sustainable & Eco-Friendly Development</li>
+              </ul>
+            </div>
 
-      <div>
-        <h2 className="text-xl font-semibold text-blue-800 mb-4">Why Choose Etihad Town?</h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li><strong className="text-blue-900">LDA Approved</strong> – A secure and transparent investment.</li>
-          <li><strong className="text-blue-900">Modern Master Plan</strong> – Smartly designed living spaces.</li>
-          <li><strong className="text-blue-900">World-Class Infrastructure</strong> – Premium roads, utilities & layouts.</li>
-          <li><strong className="text-blue-900">Luxury Lifestyle</strong> – Comfortable, modern, and serene living.</li>
-          <li><strong className="text-blue-900">Green & Eco-Friendly Environment</strong> – A healthier way of life.</li>
-          <li><strong className="text-blue-900">Affordable Payment Plan</strong> – Easy installments with great returns.</li>
-        </ul>
-      </div>
+            <div>
+              <h2 className="text-xl font-semibold text-blue-800 mb-4">
+                Why Choose Etihad Town?
+              </h2>
+              <ul className="list-disc list-inside space-y-2">
+                <li>
+                  <strong className="text-blue-900">LDA Approved</strong> – A
+                  secure and transparent investment.
+                </li>
+                <li>
+                  <strong className="text-blue-900">Modern Master Plan</strong>{" "}
+                  – Smartly designed living spaces.
+                </li>
+                <li>
+                  <strong className="text-blue-900">
+                    World-Class Infrastructure
+                  </strong>{" "}
+                  – Premium roads, utilities & layouts.
+                </li>
+                <li>
+                  <strong className="text-blue-900">Luxury Lifestyle</strong> –
+                  Comfortable, modern, and serene living.
+                </li>
+                <li>
+                  <strong className="text-blue-900">
+                    Green & Eco-Friendly Environment
+                  </strong>{" "}
+                  – A healthier way of life.
+                </li>
+                <li>
+                  <strong className="text-blue-900">
+                    Affordable Payment Plan
+                  </strong>{" "}
+                  – Easy installments with great returns.
+                </li>
+              </ul>
+            </div>
           </div>
         )}
       </div>
 
-           {/* 4-Image Section */}
+      {/* 4-Image Section */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
         <img
           src={img1}
@@ -246,19 +302,17 @@ export default function ProductPage() {
         />
       </div>
 
-            {/* Single Large Image */}
+      {/* Single Large Image */}
       <div className="mt-8">
         <img
-          src={img5}  // import this at the top like img1–img4
+          src={img5} // import this at the top like img1–img4
           alt="Etihad Town Large View"
           className="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-lg"
         />
       </div>
 
-
-            <div className="max-w-6xl mx-auto px-6 text-center mt-16 mb-10">
-
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-6xl mx-auto px-6 text-center mt-16 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {items.map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center">
               {item.icon}
@@ -269,16 +323,14 @@ export default function ProductPage() {
         </div>
       </div>
 
-
-                  {/* Single Large Image */}
+      {/* Single Large Image */}
       <div className="mt-8">
         <img
-          src={img6}  // import this at the top like img1–img4
+          src={img6} // import this at the top like img1–img4
           alt="Etihad Town Large View"
           className="w-full h-[400px] md:h-[500px] object-cover rounded-lg shadow-lg"
         />
       </div>
-
     </div>
   );
 }
